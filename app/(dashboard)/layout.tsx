@@ -4,15 +4,17 @@ import { SiteHeader } from "@/components/site-header";
 
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
-import { auth } from "@/lib/auth"; // path to your Better Auth server instance
+import { getAuth } from "@/lib/auth";
 import { headers } from "next/headers";
+
+export const dynamic = "force-dynamic";
 
 export default async function layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await auth.api.getSession({
+  const session = await getAuth().api.getSession({
     headers: await headers(), // you need to pass the headers object.
   });
 

@@ -1,4 +1,4 @@
-import { auth } from "@/lib/auth"; // path to your Better Auth server instance
+import { getAuth } from "@/lib/auth";
 import { headers } from "next/headers";
 
 import Link from "next/link";
@@ -11,8 +11,10 @@ import {
 } from "@tabler/icons-react";
 import { Coffee } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+
 export default async function page() {
-  const session = await auth.api.getSession({
+  const session = await getAuth().api.getSession({
     headers: await headers(),
   });
 
